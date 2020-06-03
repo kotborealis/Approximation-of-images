@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Approximation of images</title>
+    <link rel="stylesheet" href="css/app.css" />
+
+
+</head>
+<body>
+
+<section id="output">
+    <div>
+        <h3>Original</h3>
+        <div id="original"></div>
+    </div>
+    <div>
+        <h3>Result <span id="steps"></span></h3>
+    </div>
+</section>
+
+<form>
+    <input type="submit" value="Create image" />
+
+
+
+    <!--<div id="mainWindow">-->
+    <!--</div>-->
+
+    <!--<form id="upload-container" enctype="multipart/form-data" method="post">-->
+    <!--        <input id="file-input" type="file" name="file" multiple accept="image/*,image/jpeg">-->
+    <!--        <label for="file-input">Download image</label>-->
+    <!--</form>-->
+    <input type="file" />
+    <p>Use these shape types:</p>
+    <label><input type="checkbox" name="shapeType" value="triangle" checked="checked" />triangles</label><br/>
+    <label><input type="checkbox" name="shapeType" value="rectangle" />rectangles</label><br/>
+    <label><input type="checkbox" name="shapeType" value="ellipse" />ellipses</label><br/>
+
+    <div id="shapeNumber">
+        <p>Add <span class="value"></span> geometric shapes
+            (large number: better results, slower)
+        </p>
+        <input name="steps" type="range" min="1" max="500" value="50" />
+    </div>
+    <div id="randomShapes">
+        <p>Start every iteration with <span class="value"></span> random shapes
+            (larger number: more precise results, slower)
+        </p>
+        <input name="shapes" type="range" min="1" max="1000" value="200" />
+    </div>
+    <div id="stop">
+        <p>Stop shape optimization after <span class="value"></span> failures
+            (larger number: more precise results, slower)
+        </p>
+        <input name="mutations" type="range" min="0" max="100" value="30" />
+    </div>
+</form>
+
+<script type="module" src="source/interface.js"></script>
+</body>
+</html>

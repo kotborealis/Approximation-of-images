@@ -2,213 +2,61 @@
 <html>
 
 <head>
-    <style>
-
-    body {
-    background-color: #DCDCDC;
-    }
-
-    .button {
-    background-color: #DCDCDC;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 2px solid #5495C6;
-    }
-
-    .button2 {
-    position: relative;
-    left: 300px;
-    top: 530px;
-    right: 200px;
-    }
-    .button3 {
-    position: relative;
-    left: 600px;
-    top: 530px;
-
-    }
-
-    ul {
-    list-style-type: square;
-    position: absolute;
-    top: 70px;
-    right: 160px;
-    }
-    ul li {
-    margin: 15px;
-    font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    text-decoration: none;
-    }
-
-    label {
-    font-family: Arial, Helvetica, sans-serif;
-    }
-
-    p {
-    text-decoration: none;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    }
-
-    p.a {
-    position: absolute;
-    top: 40px;
-    right: 30px;
-    font-size: 20px;
-    }
-    p.b {
-    position: absolute;
-    top: 40px;
-    left: 56px;
-    font-size: 15px;
-    }
-    p.c {
-    position: absolute;
-    top: 40px;
-    left: 700px;
-    font-size: 15px;
-    }
-
-    div {
-    background-color: #DCDCDC;
-    }
-
-    #mainWindow {
-    position: relative;
-    top: 10px;
-    left: 50px;
-    width: 1150px;
-    height: 430px;
-    border: 2px solid #5495C6;
-    }
-    #shapeChoice {
-    position: relative;
-    top: 50px;
-    left: 50px;
-    width: 500px;
-    }
-    #shapeNumber {
-    position: relative;
-    top: 50px;
-    left: 50px;
-    width: 500px;
-    }
-    #randomShapes {
-    position: relative;
-    top: 50px;
-    left: 50px;
-    width: 500px;
-    }
-    #stop {
-    position: relative;
-    top: 50px;
-    left: 50px;
-    width: 500px;
-    bottom: 20px;
-    }
-
-    input {
-    width: 400px;
-    }
-
-    #shapeChoice input {
-    width: 60px;
-    }
-
-    img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    }
-
-    #upload-container {
-    background-color: #DCDCDC;
-    color: black;
-    padding: 15px 32px;
-    display: inline-block;
-
-    margin: 4px 2px;
-    cursor: pointer;
-    border: 2px solid #5495C6;
-    position: relative;
-    left: 50px;
-    top: 35px;
-    right: 200px;
-    }
-
-    #upload-container label {
-    color: black;
-
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    font-family: sans-serif;
-    }
-
-    #upload-container input[type=file] {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    position: relative;
-    z-index: -10;
-
-    }
-
-    </style>
     <meta charset="utf-8">
     <title>Approximation of images</title>
+    <link rel="stylesheet" href="css/app.css" />
 
 
 </head>
 <body>
 
-<p class="b">Source image</p>
-<p class="c">Result</p>
-
-
-<button id="createButton" class="button button2" onclick="create()">Create new image</button>
-<button id="saveButton" class="button button3" onclick="save()">Save image</button>
-
-<script src="interface.js"></script>
-
-<div id="mainWindow">
-</div>
-
-<form id="upload-container" enctype="multipart/form-data" method="post" onclick="download()">
-        <input id="file-input" type="file" name="file" multiple accept="image/*,image/jpeg">
-        <label for="file-input">Download image</label>
-</form>
-
-<div id="shapeChoice">
+<form>
+    <div id="shapeChoice">
     <p>Use these shape types:</p>
     <label><input type="checkbox" name="shapeType" value="triangle" checked="checked" />triangles</label><br/>
     <label><input type="checkbox" name="shapeType" value="rectangle" />rectangles</label><br/>
     <label><input type="checkbox" name="shapeType" value="ellipse" />ellipses</label><br/>
+    </div>
+    <div id="scrolls">
+        <div id="shapeNumber">
+            <p>Add <span class="value"></span> geometric shapes (large number: better results, slower)</p>
+            <input name="steps" type="range" min="1" max="500" value="50" />
+        </div>
+        <div id="randomShapes">
+            <p>Start every iteration with <span class="value"></span> random shapes (larger number: more precise results, slower)</p>
+            <input name="shapes" type="range" min="1" max="1000" value="200" />
+        </div>
+        <div id="stop">
+            <p>Stop shape optimization after <span class="value"></span> failures (larger number: more precise results, slower)</p>
+            <input name="mutations" type="range" min="0" max="100" value="30" />
+        </div>
+        <div id="opacityAlpha">
+            <p>Starting opacity: <span class="value"></span></p>
+            <input name="alpha" type="range" min="0" max="1" step="0.1" value="0.5" /><br/>
+            <label><input type="checkbox" name="mutateAlpha" checked="checked" />Adjust opacity automatically</label>
+        </div>
+        <div id="compSize">
+            <p>Computation size: <span class="value"></span> pixels<em>(smaller is faster)</em></p>
+            <input name="computeSize" type="range" min="128" max="512" value="256" /><br/>
+        </div>
+    </div>
+    <div id="buttons">
+    <input type="submit" value="Create image" />
+    <input type="file" />
 </div>
-<div id="shapeNumber">
-    <p>Add <span class="value"></span> geometric shapes
-        (large number: better results, slower)
-    </p>
-    <input name="steps" type="range" min="1" max="500" value="50" />
+</form>
+
+<div id="output">
+    <div>
+        <h3>Original</h3>
+        <div id="original"></div>
+    </div>
+    <div>
+        <h3>Result <span id="steps"></span></h3>
+        <div class="raster" id="raster"></div>
+    </div>
 </div>
-<div id="randomShapes">
-    <p>Start every iteration with <span class="value"></span> random shapes
-        (larger number: more precise results, slower)
-    </p>
-    <input name="shapes" type="range" min="1" max="1000" value="200" />
-</div>
-<div id="stop">
-    <p>Stop shape optimization after <span class="value"></span> failures
-        (larger number: more precise results, slower)
-    </p>
-    <input name="mutations" type="range" min="0" max="100" value="30" />
-</div>
+
+<script type="module" src="source/interface.js"></script>
 </body>
 </html>

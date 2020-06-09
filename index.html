@@ -9,7 +9,7 @@
 
 </head>
 <body>
-
+<h1>Image Approximation</h1>
 <form>
     <div id="shapeChoice">
     <p>Use these shape types:</p>
@@ -35,15 +35,19 @@
             <input name="alpha" type="range" min="0" max="1" step="0.1" value="0.5" /><br/>
             <label><input type="checkbox" name="mutateAlpha" checked="checked" />Adjust opacity automatically</label>
         </div>
+        <div id="backroundColor">
+            <label><input type="checkbox" checked="checked" />Adaptive background</label>
+        </div>
         <div id="compSize">
             <p>Computation size: <span class="value"></span> pixels<em>(smaller is faster)</em></p>
             <input name="computeSize" type="range" min="128" max="1024" value="256" /><br/>
         </div>
     </div>
     <div id="buttons">
-    <input type="submit" value="Create image" />
-    <input type="file" />
-</div>
+        <input type="submit" value="Create image" />
+            <input type="file" value="Download image">
+<!--            <label>Download image</label>-->
+    </div>
 </form>
 
 <div id="output">

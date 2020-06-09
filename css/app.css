@@ -79,6 +79,15 @@
         width: 500px;
         bottom: 20px;
     }
+
+    #probabilitySize {
+        position: relative;
+         top: 50px;
+         left: 50px;
+         width: 500px;
+         bottom: 20px;
+    }
+
     #viewSize {
         position: relative;
         top: 50px;

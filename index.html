@@ -36,12 +36,17 @@
             <label><input type="checkbox" name="mutateAlpha" checked="checked" />Adjust opacity automatically</label>
         </div>
         <div id="backgroundColor">
-            <label><input type="checkbox" id="backgroudCheck"checked="checked" />Adaptive background</label>
+            <label><input type="checkbox" checked="checked" id="backgroundCheck"/>Adaptive background</label>
         </div>
         <div id="compSize">
-            <p>Computation size: <span class="value"></span> pixels<em>(smaller is faster)</em></p>
+            <p>Computation size: <span class="value"></span> pixels (smaller is faster)</p>
             <input name="computeSize" type="range" min="128" max="1024" value="256" /><br/>
         </div>
+        <div id="probabilitySize">
+            <p>Probability of mutation: <span class="value"></span>% </p>
+            <input name="probability" type="range" min="0" max="100" value="100" /><br/>
+        </div>
+
     </div>
     <div id="buttons">
         <input type="submit" value="Create image" />
@@ -63,4 +68,5 @@
 
 <script type="module" src="source/interface.js"></script>
 </body>
+
 </html>

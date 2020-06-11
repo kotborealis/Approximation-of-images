@@ -2,6 +2,7 @@ import {Triangle, Rectangle, Ellipse } from "./shape.js";
 
 const numberFields = ["computeSize", "steps", "shapes", "alpha", "mutations"];
 const boolFields = ["mutateAlpha"];
+const fillField = "fill";
 const shapeField = "shapeType";
 const shapeMap = {
     "triangle": Triangle,
@@ -28,7 +29,6 @@ export function init() {
 export function getConfig() {
     let form = document.querySelector("form");
     let cfg = {};
-// Ах, этот синтаксис...
     numberFields.forEach(name => {
         cfg[name] = Number(form.querySelector(`[name=${name}]`).value);
     });
@@ -42,7 +42,14 @@ export function getConfig() {
         cfg.shapeTypes.push(shapeMap[input.value]);
     });
 
-    cfg.fill = "auto";
+    let fillFields = Array.from(form.querySelectorAll(`[name=${fillField}]`));
+    fillFields.forEach(input => {
+        if (!input.checked) { return; }
 
+        switch (input.value) {
+            case "auto": cfg.fill = "auto"; break;
+            case "fixed": cfg.fill = form.querySelector("[name='fill-color']").value; break;
+        }
+    });
     return cfg;
 }

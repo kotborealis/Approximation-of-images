@@ -66,28 +66,26 @@ export default class GenAlgorithm {
         let resolve = null;
         let bestStep = step;
         let promise = new Promise(r => resolve = r);
-
-        let tryMutation = () => {
-            if (failedAttempts >= LIMIT) {
-                          return resolve(bestStep);
-            }
-
-            totalAttempts++;
-            bestStep.mutate().compute(this.state).then(mutatedStep => {
-                if (mutatedStep.distance < bestStep.distance) { /* успех */
-                    successAttempts++;
-                    failedAttempts = 0;
-                    bestStep = mutatedStep;
-                } else { /* неудача */
-                    failedAttempts++;
+            let tryMutation = () => {
+                if (failedAttempts >= LIMIT) {
+                    return resolve(bestStep);
                 }
 
-                tryMutation();
-            });
-        }
+                totalAttempts++;
+                bestStep.mutate().compute(this.state).then(mutatedStep => {
+                    if (mutatedStep.distance < bestStep.distance) { /* успех */
+                        successAttempts++;
+                        failedAttempts = 0;
+                        bestStep = mutatedStep;
+                    } else { /* неудача */
+                        failedAttempts++;
+                    }
 
-        tryMutation();
+                    tryMutation();
+                });
+            }
 
+            tryMutation();
         return promise;
     }
 }

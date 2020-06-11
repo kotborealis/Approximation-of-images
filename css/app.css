@@ -21,9 +21,7 @@
        text-align: left;
     }
 
-    div {
-        background-color: #DCDCDC;
-    }
+
 
     #mainWindow {
         position: relative;
@@ -65,32 +63,24 @@
         width: 500px;
         bottom: 20px;
     }
+    #autoOpacity {
+        position: relative;
+        top: 20px;
+    }
     #backgroundColor {
         position: relative;
-        top: 50px;
+        top: 75px;
         left: 50px;
         width: 500px;
-        bottom: 20px;
+        bottom: 50px;
+    }
+    #colorButton {
+        position: relative;
+        top: 20px;
     }
     #compSize {
         position: relative;
-        top: 50px;
-        left: 50px;
-        width: 500px;
-        bottom: 20px;
-    }
-
-    #probabilitySize {
-        position: relative;
-         top: 50px;
-         left: 50px;
-         width: 500px;
-         bottom: 20px;
-    }
-
-    #viewSize {
-        position: relative;
-        top: 50px;
+        top: 100px;
         left: 50px;
         width: 500px;
         bottom: 20px;
@@ -100,7 +90,7 @@
     }
     #buttons input {
         position: relative;
-        top: 100px;
+        top: 125px;
         left: 50px;
         width: 300px;
     }

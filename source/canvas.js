@@ -43,7 +43,7 @@ export default class Canvas {
                 cfg.scale = 1;
                 let canvas = this.empty(cfg);
                 canvas.ctx.drawImage(img, 0, 0, cfg.width, cfg.height);
-                cfg.fill = getFill(canvas);
+                if (cfg.fill == "auto") { cfg.fill = getFill(canvas); }
                 resolve(canvas);
             }
         });

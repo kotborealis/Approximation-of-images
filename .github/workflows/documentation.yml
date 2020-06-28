@@ -8,11 +8,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - script: npm test
-        after_success: bash ./doc.sh
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:

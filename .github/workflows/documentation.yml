@@ -1,6 +1,4 @@
 
-name: GitHub pages
-
 on:
   push:
     branches:
@@ -11,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - script: npm test
-        after_success: bash ./.sh
+        after_success: bash ./doc.sh
       - name: Checkout code
         uses: actions/checkout@v2
 

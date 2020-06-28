@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Build
-        uses: Hollowfications/Approximation-of-images@v1
+        uses: andstor/jsdoc-action@v1
         with:
           source_dir: ./source
           recurse: true
@@ -23,6 +23,4 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./out
-      env:
-        global:
-          - ENCRYPTION_LABEL: 3985cea5a61f
+

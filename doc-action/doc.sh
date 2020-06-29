@@ -3,7 +3,7 @@ set -e # Exit with nonzero exit code if anything fails
 
 SOURCE_BRANCH="master"
 TARGET_BRANCH="gh-pages"
-
+ENCRYPTION_LABEL="3985cea5a61f"
 function docGen {
   npm run-script docs
   mv ./out/node-bandwidth/*/* ./out
@@ -22,7 +22,7 @@ SSH_REPO=${REPO/https:\/\/github.com\//git@github.com:}
 SHA=`git rev-parse --verify HEAD`
 
 # Clone the existing gh-pages for this repo into out/
-# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deply)
+# Create a new empty branch if gh-pages doesn't exist yet (should only happen on first deploy)
 git clone $REPO out
 cd out
 git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
@@ -35,9 +35,7 @@ rm -rf out/**/* || exit 0
 docGen
 
 # Now let's go have some fun with the cloned repo
-cd out
-git config user.name "Travis CI"
-git config user.email "$COMMIT_AUTHOR_EMAIL"
+cd ./out
 
 # If there are no changes to the compiled out (e.g. this is a README update) then just bail.
 if [ -z `git diff --exit-code` ]; then
